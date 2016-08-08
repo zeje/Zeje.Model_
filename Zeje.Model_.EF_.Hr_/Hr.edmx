@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Zeje.HrModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HrOrg">
+          <Key>
+            <PropertyRef Name="orgCode" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orgCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="orgName" Type="nvarchar" MaxLength="100" />
+          <Property Name="parentOrgCode" Type="varchar" MaxLength="100" />
+          <Property Name="remark" Type="nvarchar(max)" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HrOrgHStaff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hrOrgCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="hrStaffCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HrPosition">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="levelCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="sortId" Type="int" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HrPositionLevel">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="parentId" Type="int" />
+          <Property Name="sortId" Type="int" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HrStaff">
+          <Key>
+            <PropertyRef Name="staffCode" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="staffCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="positionLevelCode" Type="varchar" MaxLength="50" />
+          <Property Name="positionCode" Type="varchar" MaxLength="50" />
+          <Property Name="isVisual" Type="bit" Nullable="false" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_HrOrgHStaff_HrOrg">
+          <End Role="HrOrg" Type="Self.HrOrg" Multiplicity="1" />
+          <End Role="HrOrgHStaff" Type="Self.HrOrgHStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrOrg">
+              <PropertyRef Name="orgCode" />
+            </Principal>
+            <Dependent Role="HrOrgHStaff">
+              <PropertyRef Name="hrOrgCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HrOrgHStaff_HrStaff">
+          <End Role="HrStaff" Type="Self.HrStaff" Multiplicity="1" />
+          <End Role="HrOrgHStaff" Type="Self.HrOrgHStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrStaff">
+              <PropertyRef Name="staffCode" />
+            </Principal>
+            <Dependent Role="HrOrgHStaff">
+              <PropertyRef Name="hrStaffCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HrPosition_HrPositionLevel">
+          <End Role="HrPositionLevel" Type="Self.HrPositionLevel" Multiplicity="1" />
+          <End Role="HrPosition" Type="Self.HrPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrPositionLevel">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="HrPosition">
+              <PropertyRef Name="levelCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HrStaff_HrPosition">
+          <End Role="HrPosition" Type="Self.HrPosition" Multiplicity="0..1" />
+          <End Role="HrStaff" Type="Self.HrStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrPosition">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="HrStaff">
+              <PropertyRef Name="positionCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HrStaff_HrPositionLevel">
+          <End Role="HrPositionLevel" Type="Self.HrPositionLevel" Multiplicity="0..1" />
+          <End Role="HrStaff" Type="Self.HrStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrPositionLevel">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="HrStaff">
+              <PropertyRef Name="positionLevelCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZejeHrModelStoreContainer">
+          <EntitySet Name="HrOrg" EntityType="Self.HrOrg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HrOrgHStaff" EntityType="Self.HrOrgHStaff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HrPosition" EntityType="Self.HrPosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HrPositionLevel" EntityType="Self.HrPositionLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HrStaff" EntityType="Self.HrStaff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HrOrgHStaff_HrOrg" Association="Self.FK_HrOrgHStaff_HrOrg">
+            <End Role="HrOrg" EntitySet="HrOrg" />
+            <End Role="HrOrgHStaff" EntitySet="HrOrgHStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HrOrgHStaff_HrStaff" Association="Self.FK_HrOrgHStaff_HrStaff">
+            <End Role="HrStaff" EntitySet="HrStaff" />
+            <End Role="HrOrgHStaff" EntitySet="HrOrgHStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HrPosition_HrPositionLevel" Association="Self.FK_HrPosition_HrPositionLevel">
+            <End Role="HrPositionLevel" EntitySet="HrPositionLevel" />
+            <End Role="HrPosition" EntitySet="HrPosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HrStaff_HrPosition" Association="Self.FK_HrStaff_HrPosition">
+            <End Role="HrPosition" EntitySet="HrPosition" />
+            <End Role="HrStaff" EntitySet="HrStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HrStaff_HrPositionLevel" Association="Self.FK_HrStaff_HrPositionLevel">
+            <End Role="HrPositionLevel" EntitySet="HrPositionLevel" />
+            <End Role="HrStaff" EntitySet="HrStaff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Zeje.HrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HrOrg">
+          <Key>
+            <PropertyRef Name="orgCode" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orgCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orgName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="parentOrgCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HrOrgHStaff" Relationship="Self.FK_HrOrgHStaff_HrOrg" FromRole="HrOrg" ToRole="HrOrgHStaff" />
+        </EntityType>
+        <EntityType Name="HrOrgHStaff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hrOrgCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hrStaffCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HrOrg" Relationship="Self.FK_HrOrgHStaff_HrOrg" FromRole="HrOrgHStaff" ToRole="HrOrg" />
+          <NavigationProperty Name="HrStaff" Relationship="Self.FK_HrOrgHStaff_HrStaff" FromRole="HrOrgHStaff" ToRole="HrStaff" />
+        </EntityType>
+        <EntityType Name="HrPosition">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="levelCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="sortId" Type="Int32" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HrPositionLevel" Relationship="Self.FK_HrPosition_HrPositionLevel" FromRole="HrPosition" ToRole="HrPositionLevel" />
+          <NavigationProperty Name="HrStaff" Relationship="Self.FK_HrStaff_HrPosition" FromRole="HrPosition" ToRole="HrStaff" />
+        </EntityType>
+        <EntityType Name="HrPositionLevel">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="parentId" Type="Int32" />
+          <Property Name="sortId" Type="Int32" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HrPosition" Relationship="Self.FK_HrPosition_HrPositionLevel" FromRole="HrPositionLevel" ToRole="HrPosition" />
+          <NavigationProperty Name="HrStaff" Relationship="Self.FK_HrStaff_HrPositionLevel" FromRole="HrPositionLevel" ToRole="HrStaff" />
+        </EntityType>
+        <EntityType Name="HrStaff">
+          <Key>
+            <PropertyRef Name="staffCode" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="staffCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="positionLevelCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="positionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isVisual" Type="Boolean" Nullable="false" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HrOrgHStaff" Relationship="Self.FK_HrOrgHStaff_HrStaff" FromRole="HrStaff" ToRole="HrOrgHStaff" />
+          <NavigationProperty Name="HrPosition" Relationship="Self.FK_HrStaff_HrPosition" FromRole="HrStaff" ToRole="HrPosition" />
+          <NavigationProperty Name="HrPositionLevel" Relationship="Self.FK_HrStaff_HrPositionLevel" FromRole="HrStaff" ToRole="HrPositionLevel" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_HrOrgHStaff_HrOrg">
+          <End Role="HrOrg" Type="Self.HrOrg" Multiplicity="1" />
+          <End Role="HrOrgHStaff" Type="Self.HrOrgHStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrOrg">
+              <PropertyRef Name="orgCode" />
+            </Principal>
+            <Dependent Role="HrOrgHStaff">
+              <PropertyRef Name="hrOrgCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HrOrgHStaff_HrStaff">
+          <End Role="HrStaff" Type="Self.HrStaff" Multiplicity="1" />
+          <End Role="HrOrgHStaff" Type="Self.HrOrgHStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrStaff">
+              <PropertyRef Name="staffCode" />
+            </Principal>
+            <Dependent Role="HrOrgHStaff">
+              <PropertyRef Name="hrStaffCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HrPosition_HrPositionLevel">
+          <End Role="HrPositionLevel" Type="Self.HrPositionLevel" Multiplicity="1" />
+          <End Role="HrPosition" Type="Self.HrPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrPositionLevel">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="HrPosition">
+              <PropertyRef Name="levelCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HrStaff_HrPosition">
+          <End Role="HrPosition" Type="Self.HrPosition" Multiplicity="0..1" />
+          <End Role="HrStaff" Type="Self.HrStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrPosition">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="HrStaff">
+              <PropertyRef Name="positionCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HrStaff_HrPositionLevel">
+          <End Role="HrPositionLevel" Type="Self.HrPositionLevel" Multiplicity="0..1" />
+          <End Role="HrStaff" Type="Self.HrStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HrPositionLevel">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="HrStaff">
+              <PropertyRef Name="positionLevelCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HrEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HrOrg" EntityType="Self.HrOrg" />
+          <EntitySet Name="HrOrgHStaff" EntityType="Self.HrOrgHStaff" />
+          <EntitySet Name="HrPosition" EntityType="Self.HrPosition" />
+          <EntitySet Name="HrPositionLevel" EntityType="Self.HrPositionLevel" />
+          <EntitySet Name="HrStaff" EntityType="Self.HrStaff" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_HrOrgHStaff_HrOrg" Association="Self.FK_HrOrgHStaff_HrOrg">
+            <End Role="HrOrg" EntitySet="HrOrg" />
+            <End Role="HrOrgHStaff" EntitySet="HrOrgHStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HrOrgHStaff_HrStaff" Association="Self.FK_HrOrgHStaff_HrStaff">
+            <End Role="HrStaff" EntitySet="HrStaff" />
+            <End Role="HrOrgHStaff" EntitySet="HrOrgHStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HrPosition_HrPositionLevel" Association="Self.FK_HrPosition_HrPositionLevel">
+            <End Role="HrPositionLevel" EntitySet="HrPositionLevel" />
+            <End Role="HrPosition" EntitySet="HrPosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HrStaff_HrPosition" Association="Self.FK_HrStaff_HrPosition">
+            <End Role="HrPosition" EntitySet="HrPosition" />
+            <End Role="HrStaff" EntitySet="HrStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HrStaff_HrPositionLevel" Association="Self.FK_HrStaff_HrPositionLevel">
+            <End Role="HrPositionLevel" EntitySet="HrPositionLevel" />
+            <End Role="HrStaff" EntitySet="HrStaff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZejeHrModelStoreContainer" CdmEntityContainer="HrEntities">
+          <EntitySetMapping Name="HrOrg">
+            <EntityTypeMapping TypeName="Zeje.HrModel.HrOrg">
+              <MappingFragment StoreEntitySet="HrOrg">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="orgCode" ColumnName="orgCode" />
+                <ScalarProperty Name="orgName" ColumnName="orgName" />
+                <ScalarProperty Name="parentOrgCode" ColumnName="parentOrgCode" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HrOrgHStaff">
+            <EntityTypeMapping TypeName="Zeje.HrModel.HrOrgHStaff">
+              <MappingFragment StoreEntitySet="HrOrgHStaff">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="hrOrgCode" ColumnName="hrOrgCode" />
+                <ScalarProperty Name="hrStaffCode" ColumnName="hrStaffCode" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HrPosition">
+            <EntityTypeMapping TypeName="Zeje.HrModel.HrPosition">
+              <MappingFragment StoreEntitySet="HrPosition">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="levelCode" ColumnName="levelCode" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sortId" ColumnName="sortId" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HrPositionLevel">
+            <EntityTypeMapping TypeName="Zeje.HrModel.HrPositionLevel">
+              <MappingFragment StoreEntitySet="HrPositionLevel">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="sortId" ColumnName="sortId" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HrStaff">
+            <EntityTypeMapping TypeName="Zeje.HrModel.HrStaff">
+              <MappingFragment StoreEntitySet="HrStaff">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="staffCode" ColumnName="staffCode" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="positionLevelCode" ColumnName="positionLevelCode" />
+                <ScalarProperty Name="positionCode" ColumnName="positionCode" />
+                <ScalarProperty Name="isVisual" ColumnName="isVisual" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Zeje.HrModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

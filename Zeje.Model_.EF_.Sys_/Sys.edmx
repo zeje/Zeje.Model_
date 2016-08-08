@@ -1,0 +1,874 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Zeje.SysModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="App">
+          <Key>
+            <PropertyRef Name="appId" />
+          </Key>
+          <Property Name="appId" Type="int" Nullable="false" />
+          <Property Name="appKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="appName" Type="nvarchar" MaxLength="128" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AppAutoID">
+          <Key>
+            <PropertyRef Name="appId" />
+            <PropertyRef Name="appTable" />
+          </Key>
+          <Property Name="appId" Type="int" Nullable="false" />
+          <Property Name="appTable" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="maxId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppAutoSeq">
+          <Key>
+            <PropertyRef Name="appId" />
+            <PropertyRef Name="seqKey" />
+          </Key>
+          <Property Name="appId" Type="int" Nullable="false" />
+          <Property Name="seqKey" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="seqPrex" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="seqDate" Type="datetime" Nullable="false" />
+          <Property Name="seqDateLength" Type="int" Nullable="false" />
+          <Property Name="seqMaxId" Type="int" Nullable="false" />
+          <Property Name="seqMaxIdLength" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppConfig">
+          <Key>
+            <PropertyRef Name="cfgKey" />
+          </Key>
+          <Property Name="cfgKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="cfgName" Type="nvarchar" MaxLength="128" />
+          <Property Name="cfgValue" Type="nvarchar" MaxLength="256" />
+          <Property Name="cfgType" Type="int" Nullable="false" />
+          <Property Name="cfgDesc" Type="nvarchar(max)" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AppConst">
+          <Key>
+            <PropertyRef Name="cstName" />
+          </Key>
+          <Property Name="cstName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="cstValue" Type="nvarchar" MaxLength="256" />
+          <Property Name="cstDesc" Type="nvarchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="AppDict">
+          <Key>
+            <PropertyRef Name="dictTypeKey" />
+            <PropertyRef Name="dictKey" />
+          </Key>
+          <Property Name="dictTypeKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="dictTypeName" Type="nvarchar" MaxLength="128" />
+          <Property Name="dictKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="dictName" Type="nvarchar" MaxLength="128" />
+          <Property Name="dictValue" Type="int" />
+          <Property Name="dictOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="AppLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="50" />
+          <Property Name="appId" Type="int" />
+          <Property Name="logDate" Type="datetime" Nullable="false" />
+          <Property Name="thread" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="logLevel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="logger" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="exception" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SysAuthority">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="functionId" Type="bigint" Nullable="false" />
+          <Property Name="operationId" Type="bigint" Nullable="false" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysFunction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="appId" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="parentId" Type="bigint" />
+          <Property Name="url" Type="nvarchar" MaxLength="200" />
+          <Property Name="area" Type="nvarchar" MaxLength="50" />
+          <Property Name="controller" Type="nvarchar" MaxLength="200" />
+          <Property Name="action" Type="nvarchar" MaxLength="200" />
+          <Property Name="iconic" Type="nvarchar" MaxLength="200" />
+          <Property Name="menuTree" Type="nvarchar" MaxLength="4000" />
+          <Property Name="sort" Type="int" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysOperation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="key_" Type="nvarchar" MaxLength="200" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="remark" Type="nvarchar(max)" />
+          <Property Name="icon" Type="nvarchar" MaxLength="200" />
+          <Property Name="sort" Type="int" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="remark" Type="nvarchar(max)" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysRoleHAuthority">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="sysRoleId" Type="bigint" />
+          <Property Name="sysAuthorityId" Type="bigint" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="apdatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysRoleHUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="sysRoleId" Type="bigint" />
+          <Property Name="sysUserId" Type="varchar" MaxLength="20" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysUser">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="512" />
+          <Property Name="addPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_SysAuthority_SysFunction">
+          <End Role="SysFunction" Type="Self.SysFunction" Multiplicity="1" />
+          <End Role="SysAuthority" Type="Self.SysAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysFunction">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysAuthority">
+              <PropertyRef Name="functionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysAuthority_SysOperation">
+          <End Role="SysOperation" Type="Self.SysOperation" Multiplicity="1" />
+          <End Role="SysAuthority" Type="Self.SysAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysOperation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysAuthority">
+              <PropertyRef Name="operationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleHAuthority_SysAuthority">
+          <End Role="SysAuthority" Type="Self.SysAuthority" Multiplicity="0..1" />
+          <End Role="SysRoleHAuthority" Type="Self.SysRoleHAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysAuthority">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysRoleHAuthority">
+              <PropertyRef Name="sysAuthorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleHAuthority_SysRole">
+          <End Role="SysRole" Type="Self.SysRole" Multiplicity="0..1" />
+          <End Role="SysRoleHAuthority" Type="Self.SysRoleHAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysRoleHAuthority">
+              <PropertyRef Name="sysRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleHUser_SysRole">
+          <End Role="SysRole" Type="Self.SysRole" Multiplicity="0..1" />
+          <End Role="SysRoleHUser" Type="Self.SysRoleHUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysRoleHUser">
+              <PropertyRef Name="sysRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleHUser_SysUser">
+          <End Role="SysUser" Type="Self.SysUser" Multiplicity="0..1" />
+          <End Role="SysRoleHUser" Type="Self.SysRoleHUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUser">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="SysRoleHUser">
+              <PropertyRef Name="sysUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZejeSysModelStoreContainer">
+          <EntitySet Name="App" EntityType="Self.App" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppAutoID" EntityType="Self.AppAutoID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppAutoSeq" EntityType="Self.AppAutoSeq" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppConfig" EntityType="Self.AppConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppConst" EntityType="Self.AppConst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppDict" EntityType="Self.AppDict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppLog" EntityType="Self.AppLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysAuthority" EntityType="Self.SysAuthority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysFunction" EntityType="Self.SysFunction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysOperation" EntityType="Self.SysOperation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRole" EntityType="Self.SysRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRoleHAuthority" EntityType="Self.SysRoleHAuthority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRoleHUser" EntityType="Self.SysRoleHUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysUser" EntityType="Self.SysUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SysAuthority_SysFunction" Association="Self.FK_SysAuthority_SysFunction">
+            <End Role="SysFunction" EntitySet="SysFunction" />
+            <End Role="SysAuthority" EntitySet="SysAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysAuthority_SysOperation" Association="Self.FK_SysAuthority_SysOperation">
+            <End Role="SysOperation" EntitySet="SysOperation" />
+            <End Role="SysAuthority" EntitySet="SysAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleHAuthority_SysAuthority" Association="Self.FK_SysRoleHAuthority_SysAuthority">
+            <End Role="SysAuthority" EntitySet="SysAuthority" />
+            <End Role="SysRoleHAuthority" EntitySet="SysRoleHAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleHAuthority_SysRole" Association="Self.FK_SysRoleHAuthority_SysRole">
+            <End Role="SysRole" EntitySet="SysRole" />
+            <End Role="SysRoleHAuthority" EntitySet="SysRoleHAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleHUser_SysRole" Association="Self.FK_SysRoleHUser_SysRole">
+            <End Role="SysRole" EntitySet="SysRole" />
+            <End Role="SysRoleHUser" EntitySet="SysRoleHUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleHUser_SysUser" Association="Self.FK_SysRoleHUser_SysUser">
+            <End Role="SysUser" EntitySet="SysUser" />
+            <End Role="SysRoleHUser" EntitySet="SysRoleHUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Zeje.SysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="App">
+          <Key>
+            <PropertyRef Name="appId" />
+          </Key>
+          <Property Name="appId" Type="Int32" Nullable="false" />
+          <Property Name="appKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="appName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AppAutoID">
+          <Key>
+            <PropertyRef Name="appId" />
+            <PropertyRef Name="appTable" />
+          </Key>
+          <Property Name="appId" Type="Int32" Nullable="false" />
+          <Property Name="appTable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maxId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppAutoSeq">
+          <Key>
+            <PropertyRef Name="appId" />
+            <PropertyRef Name="seqKey" />
+          </Key>
+          <Property Name="appId" Type="Int32" Nullable="false" />
+          <Property Name="seqKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seqPrex" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seqDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="seqDateLength" Type="Int32" Nullable="false" />
+          <Property Name="seqMaxId" Type="Int32" Nullable="false" />
+          <Property Name="seqMaxIdLength" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppConfig">
+          <Key>
+            <PropertyRef Name="cfgKey" />
+          </Key>
+          <Property Name="cfgKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cfgName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="cfgValue" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="cfgType" Type="Int32" Nullable="false" />
+          <Property Name="cfgDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AppConst">
+          <Key>
+            <PropertyRef Name="cstName" />
+          </Key>
+          <Property Name="cstName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cstValue" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="cstDesc" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AppDict">
+          <Key>
+            <PropertyRef Name="dictTypeKey" />
+            <PropertyRef Name="dictKey" />
+          </Key>
+          <Property Name="dictTypeKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dictTypeName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="dictKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dictName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="dictValue" Type="Int32" />
+          <Property Name="dictOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AppLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="appId" Type="Int32" />
+          <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="thread" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="logLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="logger" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysAuthority">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="functionId" Type="Int64" Nullable="false" />
+          <Property Name="operationId" Type="Int64" Nullable="false" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SysFunction" Relationship="Self.FK_SysAuthority_SysFunction" FromRole="SysAuthority" ToRole="SysFunction" />
+          <NavigationProperty Name="SysOperation" Relationship="Self.FK_SysAuthority_SysOperation" FromRole="SysAuthority" ToRole="SysOperation" />
+          <NavigationProperty Name="SysRoleHAuthority" Relationship="Self.FK_SysRoleHAuthority_SysAuthority" FromRole="SysAuthority" ToRole="SysRoleHAuthority" />
+        </EntityType>
+        <EntityType Name="SysFunction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="appId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="parentId" Type="Int64" />
+          <Property Name="url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="controller" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="action" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="iconic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="menuTree" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="sort" Type="Int32" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SysAuthority" Relationship="Self.FK_SysAuthority_SysFunction" FromRole="SysFunction" ToRole="SysAuthority" />
+        </EntityType>
+        <EntityType Name="SysOperation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="key_" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="sort" Type="Int32" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SysAuthority" Relationship="Self.FK_SysAuthority_SysOperation" FromRole="SysOperation" ToRole="SysAuthority" />
+        </EntityType>
+        <EntityType Name="SysRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SysRoleHAuthority" Relationship="Self.FK_SysRoleHAuthority_SysRole" FromRole="SysRole" ToRole="SysRoleHAuthority" />
+          <NavigationProperty Name="SysRoleHUser" Relationship="Self.FK_SysRoleHUser_SysRole" FromRole="SysRole" ToRole="SysRoleHUser" />
+        </EntityType>
+        <EntityType Name="SysRoleHAuthority">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="sysRoleId" Type="Int64" />
+          <Property Name="sysAuthorityId" Type="Int64" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="apdatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SysAuthority" Relationship="Self.FK_SysRoleHAuthority_SysAuthority" FromRole="SysRoleHAuthority" ToRole="SysAuthority" />
+          <NavigationProperty Name="SysRole" Relationship="Self.FK_SysRoleHAuthority_SysRole" FromRole="SysRoleHAuthority" ToRole="SysRole" />
+        </EntityType>
+        <EntityType Name="SysRoleHUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="sysRoleId" Type="Int64" />
+          <Property Name="sysUserId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SysRole" Relationship="Self.FK_SysRoleHUser_SysRole" FromRole="SysRoleHUser" ToRole="SysRole" />
+          <NavigationProperty Name="SysUser" Relationship="Self.FK_SysRoleHUser_SysUser" FromRole="SysRoleHUser" ToRole="SysUser" />
+        </EntityType>
+        <EntityType Name="SysUser">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SysRoleHUser" Relationship="Self.FK_SysRoleHUser_SysUser" FromRole="SysUser" ToRole="SysRoleHUser" />
+        </EntityType>
+        <Association Name="FK_SysAuthority_SysFunction">
+          <End Role="SysFunction" Type="Self.SysFunction" Multiplicity="1" />
+          <End Role="SysAuthority" Type="Self.SysAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysFunction">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysAuthority">
+              <PropertyRef Name="functionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysAuthority_SysOperation">
+          <End Role="SysOperation" Type="Self.SysOperation" Multiplicity="1" />
+          <End Role="SysAuthority" Type="Self.SysAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysOperation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysAuthority">
+              <PropertyRef Name="operationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleHAuthority_SysAuthority">
+          <End Role="SysAuthority" Type="Self.SysAuthority" Multiplicity="0..1" />
+          <End Role="SysRoleHAuthority" Type="Self.SysRoleHAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysAuthority">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysRoleHAuthority">
+              <PropertyRef Name="sysAuthorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleHAuthority_SysRole">
+          <End Role="SysRole" Type="Self.SysRole" Multiplicity="0..1" />
+          <End Role="SysRoleHAuthority" Type="Self.SysRoleHAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysRoleHAuthority">
+              <PropertyRef Name="sysRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleHUser_SysRole">
+          <End Role="SysRole" Type="Self.SysRole" Multiplicity="0..1" />
+          <End Role="SysRoleHUser" Type="Self.SysRoleHUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SysRoleHUser">
+              <PropertyRef Name="sysRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleHUser_SysUser">
+          <End Role="SysUser" Type="Self.SysUser" Multiplicity="0..1" />
+          <End Role="SysRoleHUser" Type="Self.SysRoleHUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUser">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="SysRoleHUser">
+              <PropertyRef Name="sysUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="App" EntityType="Self.App" />
+          <EntitySet Name="AppAutoID" EntityType="Self.AppAutoID" />
+          <EntitySet Name="AppAutoSeq" EntityType="Self.AppAutoSeq" />
+          <EntitySet Name="AppConfig" EntityType="Self.AppConfig" />
+          <EntitySet Name="AppConst" EntityType="Self.AppConst" />
+          <EntitySet Name="AppDict" EntityType="Self.AppDict" />
+          <EntitySet Name="AppLog" EntityType="Self.AppLog" />
+          <EntitySet Name="SysAuthority" EntityType="Self.SysAuthority" />
+          <EntitySet Name="SysFunction" EntityType="Self.SysFunction" />
+          <EntitySet Name="SysOperation" EntityType="Self.SysOperation" />
+          <EntitySet Name="SysRole" EntityType="Self.SysRole" />
+          <EntitySet Name="SysRoleHAuthority" EntityType="Self.SysRoleHAuthority" />
+          <EntitySet Name="SysRoleHUser" EntityType="Self.SysRoleHUser" />
+          <EntitySet Name="SysUser" EntityType="Self.SysUser" />
+          <AssociationSet Name="FK_SysAuthority_SysFunction" Association="Self.FK_SysAuthority_SysFunction">
+            <End Role="SysFunction" EntitySet="SysFunction" />
+            <End Role="SysAuthority" EntitySet="SysAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysAuthority_SysOperation" Association="Self.FK_SysAuthority_SysOperation">
+            <End Role="SysOperation" EntitySet="SysOperation" />
+            <End Role="SysAuthority" EntitySet="SysAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleHAuthority_SysAuthority" Association="Self.FK_SysRoleHAuthority_SysAuthority">
+            <End Role="SysAuthority" EntitySet="SysAuthority" />
+            <End Role="SysRoleHAuthority" EntitySet="SysRoleHAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleHAuthority_SysRole" Association="Self.FK_SysRoleHAuthority_SysRole">
+            <End Role="SysRole" EntitySet="SysRole" />
+            <End Role="SysRoleHAuthority" EntitySet="SysRoleHAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleHUser_SysRole" Association="Self.FK_SysRoleHUser_SysRole">
+            <End Role="SysRole" EntitySet="SysRole" />
+            <End Role="SysRoleHUser" EntitySet="SysRoleHUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleHUser_SysUser" Association="Self.FK_SysRoleHUser_SysUser">
+            <End Role="SysUser" EntitySet="SysUser" />
+            <End Role="SysRoleHUser" EntitySet="SysRoleHUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZejeSysModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="App">
+            <EntityTypeMapping TypeName="Zeje.SysModel.App">
+              <MappingFragment StoreEntitySet="App">
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="appKey" ColumnName="appKey" />
+                <ScalarProperty Name="appName" ColumnName="appName" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppAutoID">
+            <EntityTypeMapping TypeName="Zeje.SysModel.AppAutoID">
+              <MappingFragment StoreEntitySet="AppAutoID">
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="appTable" ColumnName="appTable" />
+                <ScalarProperty Name="maxId" ColumnName="maxId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppAutoSeq">
+            <EntityTypeMapping TypeName="Zeje.SysModel.AppAutoSeq">
+              <MappingFragment StoreEntitySet="AppAutoSeq">
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="seqKey" ColumnName="seqKey" />
+                <ScalarProperty Name="seqPrex" ColumnName="seqPrex" />
+                <ScalarProperty Name="seqDate" ColumnName="seqDate" />
+                <ScalarProperty Name="seqDateLength" ColumnName="seqDateLength" />
+                <ScalarProperty Name="seqMaxId" ColumnName="seqMaxId" />
+                <ScalarProperty Name="seqMaxIdLength" ColumnName="seqMaxIdLength" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppConfig">
+            <EntityTypeMapping TypeName="Zeje.SysModel.AppConfig">
+              <MappingFragment StoreEntitySet="AppConfig">
+                <ScalarProperty Name="cfgKey" ColumnName="cfgKey" />
+                <ScalarProperty Name="cfgName" ColumnName="cfgName" />
+                <ScalarProperty Name="cfgValue" ColumnName="cfgValue" />
+                <ScalarProperty Name="cfgType" ColumnName="cfgType" />
+                <ScalarProperty Name="cfgDesc" ColumnName="cfgDesc" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppConst">
+            <EntityTypeMapping TypeName="Zeje.SysModel.AppConst">
+              <MappingFragment StoreEntitySet="AppConst">
+                <ScalarProperty Name="cstName" ColumnName="cstName" />
+                <ScalarProperty Name="cstValue" ColumnName="cstValue" />
+                <ScalarProperty Name="cstDesc" ColumnName="cstDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppDict">
+            <EntityTypeMapping TypeName="Zeje.SysModel.AppDict">
+              <MappingFragment StoreEntitySet="AppDict">
+                <ScalarProperty Name="dictTypeKey" ColumnName="dictTypeKey" />
+                <ScalarProperty Name="dictTypeName" ColumnName="dictTypeName" />
+                <ScalarProperty Name="dictKey" ColumnName="dictKey" />
+                <ScalarProperty Name="dictName" ColumnName="dictName" />
+                <ScalarProperty Name="dictValue" ColumnName="dictValue" />
+                <ScalarProperty Name="dictOrder" ColumnName="dictOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppLog">
+            <EntityTypeMapping TypeName="Zeje.SysModel.AppLog">
+              <MappingFragment StoreEntitySet="AppLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="logDate" ColumnName="logDate" />
+                <ScalarProperty Name="thread" ColumnName="thread" />
+                <ScalarProperty Name="logLevel" ColumnName="logLevel" />
+                <ScalarProperty Name="logger" ColumnName="logger" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="exception" ColumnName="exception" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysAuthority">
+            <EntityTypeMapping TypeName="Zeje.SysModel.SysAuthority">
+              <MappingFragment StoreEntitySet="SysAuthority">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="functionId" ColumnName="functionId" />
+                <ScalarProperty Name="operationId" ColumnName="operationId" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysFunction">
+            <EntityTypeMapping TypeName="Zeje.SysModel.SysFunction">
+              <MappingFragment StoreEntitySet="SysFunction">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="iconic" ColumnName="iconic" />
+                <ScalarProperty Name="menuTree" ColumnName="menuTree" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysOperation">
+            <EntityTypeMapping TypeName="Zeje.SysModel.SysOperation">
+              <MappingFragment StoreEntitySet="SysOperation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="key_" ColumnName="key_" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysRole">
+            <EntityTypeMapping TypeName="Zeje.SysModel.SysRole">
+              <MappingFragment StoreEntitySet="SysRole">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysRoleHAuthority">
+            <EntityTypeMapping TypeName="Zeje.SysModel.SysRoleHAuthority">
+              <MappingFragment StoreEntitySet="SysRoleHAuthority">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sysRoleId" ColumnName="sysRoleId" />
+                <ScalarProperty Name="sysAuthorityId" ColumnName="sysAuthorityId" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="apdatePerson" ColumnName="apdatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysRoleHUser">
+            <EntityTypeMapping TypeName="Zeje.SysModel.SysRoleHUser">
+              <MappingFragment StoreEntitySet="SysRoleHUser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sysRoleId" ColumnName="sysRoleId" />
+                <ScalarProperty Name="sysUserId" ColumnName="sysUserId" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysUser">
+            <EntityTypeMapping TypeName="Zeje.SysModel.SysUser">
+              <MappingFragment StoreEntitySet="SysUser">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

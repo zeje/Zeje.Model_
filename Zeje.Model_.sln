@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40418.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeje.Model_", "Zeje.Model_\Zeje.Model_.csproj", "{82C2682E-D744-40F1-BAF3-E57146943570}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0CBA3231-BCF0-4EBC-BBB7-D8675892B776}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		Zeje.Model_\pack.bat = Zeje.Model_\pack.bat
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeje.Model_.EF_.Hr_", "Zeje.Model_.EF_.Hr_\Zeje.Model_.EF_.Hr_.csproj", "{CD640C5E-760E-43C9-9D79-558E7A5FA82D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeje.Model_.EF_.QY_", "Zeje.Model_.EF_.QY_\Zeje.Model_.EF_.QY_.csproj", "{8B322F82-6B62-403A-A6AF-19CF2E9573B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeje.Model_.EF_.Sys_", "Zeje.Model_.EF_.Sys_\Zeje.Model_.EF_.Sys_.csproj", "{B569375C-A4E1-4544-B134-0DDFD34BC60D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82C2682E-D744-40F1-BAF3-E57146943570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C2682E-D744-40F1-BAF3-E57146943570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C2682E-D744-40F1-BAF3-E57146943570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C2682E-D744-40F1-BAF3-E57146943570}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD640C5E-760E-43C9-9D79-558E7A5FA82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD640C5E-760E-43C9-9D79-558E7A5FA82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD640C5E-760E-43C9-9D79-558E7A5FA82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD640C5E-760E-43C9-9D79-558E7A5FA82D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B322F82-6B62-403A-A6AF-19CF2E9573B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B322F82-6B62-403A-A6AF-19CF2E9573B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B322F82-6B62-403A-A6AF-19CF2E9573B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B322F82-6B62-403A-A6AF-19CF2E9573B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B569375C-A4E1-4544-B134-0DDFD34BC60D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B569375C-A4E1-4544-B134-0DDFD34BC60D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B569375C-A4E1-4544-B134-0DDFD34BC60D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B569375C-A4E1-4544-B134-0DDFD34BC60D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
