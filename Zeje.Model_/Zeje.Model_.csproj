@@ -52,6 +52,91 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Edmx\QY.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QY.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QY.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyAdmin.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyAgent.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyAgentSet.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyDepartment.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyEventLocation.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyGetImage.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyGetLocation.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyGetText.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyGetVideo.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyGetVoice.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySetFile.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySetImage.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySetMpNews.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySetNews.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySetText.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySetVideo.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySetVoice.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySourceMedia.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QySourceMpNews.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyTag.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyUser.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyUserConfig.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\QyUserConfigRecord.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\syn_user.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\sysdiagrams.cs">
+      <DependentUpon>QY.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Edmx\QY.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -60,6 +145,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Edmx\QY.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QY.Context.cs</LastGenOutput>
+      <DependentUpon>QY.edmx</DependentUpon>
+    </Content>
+    <Content Include="Edmx\QY.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QY.cs</LastGenOutput>
+      <DependentUpon>QY.edmx</DependentUpon>
+    </Content>
     <Content Include="NuGet.xml" />
     <Content Include="打包步骤.txt" />
   </ItemGroup>

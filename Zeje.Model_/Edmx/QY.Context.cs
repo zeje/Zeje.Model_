@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Zeje.POCO_.QY_.Context_
+namespace Zeje.Model_.Edmx
 {
     using System;
     using System.Data.Entity;
