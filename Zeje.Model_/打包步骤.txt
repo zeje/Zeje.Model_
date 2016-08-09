@@ -1,17 +1,20 @@
 ﻿打包步骤
-一、给所有的csproj文件添加如下语句
-  <Import Project="$(MSBuildBinPath)\Microsoft.Data.Entity.targets" Condition="Exists('$(MSBuildBinPath)\Microsoft.Data.Entity.targets')"/>
+一、参考资料：http://docs.nuget.org/consume/command-line-reference
 二、打开目录Zeje.Model_\.nuget，将NuGet.xml文件放到此目录中
 三、打开目录Zeje.Model_\.nuget，从目录地址栏中输入cmd
 四、打开命令行后，拷贝如下命令执行
 
-nuget pack ..\Zeje.Model_.EF_.Hr_\Zeje.Model_.EF_.Hr_.csproj -Build -Properties Configuration=Release
-nuget pack ..\Zeje.Model_.EF_.QY_\Zeje.Model_.EF_.QY_.csproj -Build -Properties Configuration=Release
-nuget pack ..\Zeje.Model_.EF_.Sys_\Zeje.Model_.EF_.Sys_.csproj -Build -Properties Configuration=Release
+nuget pack ..\Zeje.POCO_.Hr_\Zeje.POCO_.Hr_.csproj -MSBuildVersion 12 -Build -Properties Configuration=Release
+nuget pack ..\Zeje.POCO_.QY_\Zeje.POCO_.QY_.csproj -MSBuildVersion 12 -Build -Properties Configuration=Release
+nuget pack ..\Zeje.POCO_.Sys_\Zeje.POCO_.Sys_.csproj  -MSBuildVersion 12 -Build -Properties Configuration=Release
 
-nuget pack ..\Zeje.Model_.Dapper_.Hr_\Zeje.Model_.Dapper_.Hr_.csproj -Build -Properties Configuration=Release
-nuget pack ..\Zeje.Model_.Dapper_.QY_\Zeje.Model_.Dapper_.QY_.csproj -Build -Properties Configuration=Release
-nuget pack ..\Zeje.Model_.Dapper_.Sys_\Zeje.Model_.Dapper_.Sys_.csproj -Build -Properties Configuration=Release
+nuget pack ..\Zeje.POCO_.Hr_.Context_\Zeje.POCO_.Hr_.Context_.csproj -MSBuildVersion 12 -Build -Properties Configuration=Release
+nuget pack ..\Zeje.POCO_.QY_.Context_\Zeje.POCO_.QY_.Context_.csproj -MSBuildVersion 12 -Build -Properties Configuration=Release
+nuget pack ..\Zeje.POCO_.Sys_.Context_\Zeje.POCO_.Sys_.Context_.csproj -MSBuildVersion 12 -Build -Properties Configuration=Release
 
+五、发布
+根据网上的说法，必须要卸载WebDAV（功能视图-IIS-模块）
+
+命令
 nuget push *.nupkg -s http://www.zeje.cn:8080 zeje123!@#
 

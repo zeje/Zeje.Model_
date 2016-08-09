@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Zeje.Model_.Dapper_.Sys_")]
+[assembly: AssemblyTitle("Zeje.POCO_.Sys_")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sky123.Org")]
-[assembly: AssemblyProduct("Zeje.Model_.Dapper_.Sys_")]
+[assembly: AssemblyCompany("择捷科技")]
+[assembly: AssemblyProduct("Zeje.POCO_.Sys_")]
 [assembly: AssemblyCopyright("Copyright © Sky123.Org 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

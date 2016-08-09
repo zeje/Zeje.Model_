@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Zeje.Model_.EF_.Sys_")]
+[assembly: AssemblyTitle("Zeje.POCO_.Sys_.Context_")]
 [assembly: AssemblyDescription("系统实体（基于Entity Framework）")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("择捷科技")]
-[assembly: AssemblyProduct("Zeje.Model_.EF_.Sys_")]
+[assembly: AssemblyProduct("Zeje.POCO_.Sys_.Context_")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
