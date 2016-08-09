@@ -51,11 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hr.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Hr.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Hr.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,10 +77,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Hr.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Hr.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Hr.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Hr.cs</LastGenOutput>
