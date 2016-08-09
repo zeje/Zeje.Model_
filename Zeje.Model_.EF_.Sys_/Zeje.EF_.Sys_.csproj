@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79E349AC-8FBC-4921-9C93-DB4B4F75C34B}</ProjectGuid>
+    <ProjectGuid>{B569375C-A4E1-4544-B134-0DDFD34BC60D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zeje.POCO_.Hr_</RootNamespace>
-    <AssemblyName>Zeje.POCO_.Hr_</AssemblyName>
+    <RootNamespace>Zeje.EF_.Sys_</RootNamespace>
+    <AssemblyName>Zeje.EF_.Sys_</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -44,6 +44,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,48 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hr.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Hr.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Hr.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Hr.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HrOrg.cs">
-      <DependentUpon>Hr.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HrOrgHStaff.cs">
-      <DependentUpon>Hr.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HrPosition.cs">
-      <DependentUpon>Hr.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HrPositionLevel.cs">
-      <DependentUpon>Hr.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HrStaff.cs">
-      <DependentUpon>Hr.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Hr.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Hr.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Hr.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Hr.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Hr.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
