@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Zeje.Model_.EF_.Hr_")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("人事实体（基于Entity Framework）")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("择捷科技")]
 [assembly: AssemblyProduct("Zeje.Model_.EF_.Hr_")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]

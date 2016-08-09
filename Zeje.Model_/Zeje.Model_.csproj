@@ -42,7 +42,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pack.txt" />
+    <Content Include="NuGet.xml" />
+    <Content Include="打包步骤.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="全局观.xmind" />
